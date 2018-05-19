@@ -9,7 +9,6 @@ webpack.config.js
 webpack.config 
 
 server/controllers/testctrl.js
-server/uploads
 
 seed.js
 

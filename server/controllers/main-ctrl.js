@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bycrypt = require('bcryptjs');
+const JWT_SECRET = "secretkeyforjsonwebtoken";
 
 
 const models = require( '../models/models' );
@@ -35,7 +36,7 @@ function signin( req, res ) {
         // for authentication
         const token = jwt.sign({
           username: user.username,
-        }, process.env.JWT_SECRET);
+        }, JWT_SECRET);
 
         return res.status(200).json({
           success: true,

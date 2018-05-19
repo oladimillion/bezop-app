@@ -5,9 +5,9 @@ mongoose.Promise = global.Promise;
 let URI = null;
 
 if(process.env.NODE_ENV != "production")
-  URI = process.env.LOCAL_MONGODB_URI;
+  URI = "mongodb://oladimeji:1234ab1234@127.0.0.1:27017/simply-upload";
 else
-  URI = process.env.SERVER_MONGODB_URI;
+  URI = "mongodb://oladimillion:jesus123@ds229290.mlab.com:29290/simply-upload";
 
 //connecting to database
 mongoose.connect(URI, {

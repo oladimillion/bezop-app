@@ -1,0 +1,7 @@
+runtime: nodejs
+env: flex
+
+LOCAL_MONGODB_URI: mongodb://oladimeji:1234ab1234@127.0.0.1:27017/simply-upload
+SERVER_MONGODB_URI: mongodb://oladimillion:jesus123@ds229290.mlab.com:29290/simply-upload
+
+JWT_SECRET: secretkeyforjsonwebtoken

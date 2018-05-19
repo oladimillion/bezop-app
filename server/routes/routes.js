@@ -1,16 +1,31 @@
 const express = require("express");
 const route = express.Router();
-const multer  = require('multer')
+const Multer  = require('multer')
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'server/uploads/')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + "_" + file.originalname)
+let upload = null;
+
+// if(process.env.NODE_ENV != "production"){
+//   const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, 'server/uploads/')
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, Date.now() + "_" + file.originalname)
+//     }
+//   })
+//   upload = multer({storage: storage })
+// }
+
+
+// if(process.env.NODE_ENV == "production"){
+upload = Multer({
+  storage: Multer.memoryStorage(),
+  limits: {
+    fileSize: 5 * 1024 * 1024 // no larger than 5mb, you can change as needed.
   }
-})
-const upload = multer({storage: storage })
+});
+// }
+
 
 const MainCtrl = require("../controllers/main-ctrl");
 const  authenticate  = require("../middlewares/authenticate");

@@ -6,3 +6,4 @@ env_variables:
   SERVER_MONGODB_URI: mongodb://oladimillion:jesus123@ds229290.mlab.com:29290/simply-upload
   JWT_SECRET: secretkeyforjsonwebtoken
   GCLOUD_STORAGE_BUCKET: simply-upload
+  PROJECT_ID: bezop-204614

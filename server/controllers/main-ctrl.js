@@ -5,7 +5,10 @@ const bycrypt = require('bcryptjs');
 
 // if(process.env.NODE_ENV == "production"){
 const Storage = require('@google-cloud/storage');
-const storage = Storage();
+const storage = Storage({
+  projectId: process.env.PROJECT_ID,
+  keyFilename: './bezop-92200739bc64.json'
+});
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
 // }
 
@@ -104,24 +107,33 @@ function addFile(req, res){
     });
   }
 
-  const blob = bucket.file(req.file.originalname);
-  const blobStream = blob.createWriteStream();
+
+  console.log(req.file)
+  console.log(req.file.originalname)
+
+  let filename = Date.now() + "_" + req.file.originalname;
+
+  const blob = bucket.file(filename);
+  const blobStream = blob.createWriteStream({
+    metadata: {
+      contentType: req.file.mimetype
+    }
+  });
+
 
   blobStream.on('error', (err) => {
-    // throw err;
     return res.json({
-      err: err
+      err: JSON.stringify(err),
     })
-    // next(err);
   });
 
   blobStream.on('finish', () => {
     // The public URL can be used to directly access the file via HTTP.
-    const publicUrl = format(`https://storage.googleapis.com/${bucket.name}/${blob.name}`);
+    const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
 
     const file = new File();
     file.owner = req._username;
-    file.fileid = req.file.filename;
+    file.fileid = String(Date.now());
     file.fileurl = publicUrl;
 
     file.save()
@@ -132,9 +144,7 @@ function addFile(req, res){
           payload: result,
         });
       })
-
   });
-
   blobStream.end(req.file.buffer);
 }
 

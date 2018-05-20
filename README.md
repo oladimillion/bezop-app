@@ -1,16 +1,19 @@
 
+## [ https://bezop-204614.appspot.com ]
+
+
 # SIMPLY - UPLOAD     
 
-> Simply - upload is an application that allows user to save file to google cloud. 
+> With SIMPLY - UPLOAD, uploading files made easy. 
 
-### This application allows people to 
+### This application allows users to 
   - create an account, 
 
   - upload files, 
 
   - move files to trash
 
-  - restore files from trash 
+  - access both saved and trashed files on dashboard 
 
 ## To run the app locally
   1. Clone the repository:
@@ -27,12 +30,8 @@
 
   5. visit `http://localhost:8000` to use the app
 
-## USE LIVE APP
-  visit [ https://bezop-204614.appspot.com ] 
+## VISIT LIVE APP VERSION
+  [ https://bezop-204614.appspot.com ] 
 
-## Author
-  **Oladimeji Akande** 
 
-## License
-  None.
 

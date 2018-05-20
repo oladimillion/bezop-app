@@ -1,16 +1,13 @@
 const jwt = require("jsonwebtoken");
 const bycrypt = require('bcryptjs');
-// const JWT_SECRET = "secretkeyforjsonwebtoken";
 
 
-// if(process.env.NODE_ENV == "production"){
 const Storage = require('@google-cloud/storage');
 const storage = Storage({
   projectId: process.env.PROJECT_ID,
   keyFilename: './bezop-92200739bc64.json'
 });
 const bucket = storage.bucket(process.env.GCLOUD_STORAGE_BUCKET);
-// }
 
 const models = require( '../models/models' );
 const { isValidLoginData }  = require("../utils/validations")
@@ -106,10 +103,6 @@ function addFile(req, res){
       message: "Please choose a file"
     });
   }
-
-
-  console.log(req.file)
-  console.log(req.file.originalname)
 
   let filename = Date.now() + "_" + req.file.originalname;
 

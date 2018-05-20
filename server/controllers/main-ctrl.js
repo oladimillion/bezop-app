@@ -72,9 +72,8 @@ function signup(req, res) {
   const user = new User();
 
   //FETCH USERNAME NAME FROM DB AND CHECK IF EXIST
-  user.usernameExist(username, function(_user){
-
-    if(_user && (_user.username == username)){
+  user.usernameExist(username, function(exist){
+    if(exist){
       return res.status( 403 ).json({
         success: false,
         message: "Username already taken",
@@ -126,8 +125,11 @@ function addFile(req, res){
 
     const file = new File();
     file.owner = req._username;
+    file.caption = req.body.caption;
     file.fileid = String(Date.now());
     file.fileurl = publicUrl;
+
+    console.log(req.body)
 
     file.save()
       .then(function (result) {

@@ -45,15 +45,20 @@ UserSchema.methods.usernameExist = function(username, cb){
     function(err, user){
       if(err) throw err;
 
-      cb(user)
+       cb(user && (user.username == username))
     });
 }
 
-// SESSION SCHEMA
+// FILE SCHEMA
 const FileSchema = new Schema({
   owner: {
     type: String,
     required:  true,
+  },
+  caption: {
+    type: String,
+    required: true,
+    default: "No caption",
   },
   fileid: {
     type: String,

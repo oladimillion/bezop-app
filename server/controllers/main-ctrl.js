@@ -129,8 +129,6 @@ function addFile(req, res){
     file.fileid = String(Date.now());
     file.fileurl = publicUrl;
 
-    console.log(req.body)
-
     file.save()
       .then(function (result) {
         return res.status( 201 ).json({
@@ -170,13 +168,13 @@ function undoRemoveFile(req, res){
         file.save();
         return res.status( 201 ).json({
           success: true,
-          message: "File removed from trash",
+          message: "File moved to gallery",
           payload: file,
         });
       }
       return res.status( 403 ).json({
         success: false,
-        message: "File not removed from trash"
+        message: "File not moved to gallery"
       });
     });
 }
